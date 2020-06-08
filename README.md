@@ -1,0 +1,9 @@
+```
+<?
+$APPLICATION->IncludeComponent(
+	"test:employees",
+	"",
+	[]
+);
+?>
+```
