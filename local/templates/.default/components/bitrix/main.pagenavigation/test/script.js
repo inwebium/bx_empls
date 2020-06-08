@@ -4,44 +4,23 @@ function changePageSize()
 	var urlParams = new URLSearchParams(window.location.search);
 	var navigationParam = urlParams.get('employees-navigation');
 
+	// Если в get есть параметр для пагинации
 	if (navigationParam !== null) {
-		var splittedNavParams = navigationParam.split('-');
-		var sizeKeyIndex = splittedNavParams.indexOf('size');
-		var joinedParams = '';
-
+		// Если выбрано "Все"
 		if (selectedSize == 0) {
-			var pageKeyIndex = splittedNavParams.indexOf('page');
-
-			if (pageKeyIndex >= 0) {
-				splittedNavParams[pageKeyIndex + 1] = 'all';
-			} else {
-				splittedNavParams.push('page');
-				splittedNavParams.push('all');
-			}
-
-			joinedParams = splittedNavParams.join('-');
+			urlParams.set('employees-navigation', 'page-all');
 		} else {
-			if (sizeKeyIndex >= 0) {
-				splittedNavParams[sizeKeyIndex + 1] = selectedSize;
-			} else {
-				splittedNavParams.push('size');
-				splittedNavParams.push(selectedSize);
-			}
-
-			joinedParams = splittedNavParams.join('-').replace('page-all', 'page-1');
+			urlParams.set('employees-navigation', 'page-1-size-' + selectedSize);
 		}
-
-
-
-		urlParams.set('employees-navigation', joinedParams);
 	} else {
+		// Если выбрано "Все"
 		if (selectedSize == 0) {
 			urlParams.append('employees-navigation', 'page-all');
 		} else {
-			urlParams.append('employees-navigation', 'size-' + selectedSize);
+			urlParams.append('employees-navigation', 'page-1-size-' + selectedSize);
 		}
 		
 	}
-
+	
 	document.location.search = urlParams;
 }

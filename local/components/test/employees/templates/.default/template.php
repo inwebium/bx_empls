@@ -40,11 +40,12 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 	<div>
 		<?
 		$APPLICATION->IncludeComponent(
-		   "bitrix:main.pagenavigation",
-		   "test",
+		   'bitrix:main.pagenavigation',
+		   'test',
 		   array(
-		      "NAV_OBJECT" => $arResult['NAVIGATION'],
-		      "SEF_MODE" => "N",
+		      'NAV_OBJECT' => $arResult['NAVIGATION'],
+		      'SEF_MODE' => 'N',
+		      'SHOW_ALWAYS' => 'Y'
 		   ),
 		   false
 		);
